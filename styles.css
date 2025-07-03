@@ -9,21 +9,20 @@
 img {
   width: 100%;
   display: block;
-  /* Properti global untuk img. Bisa ditimpa oleh aturan yang lebih spesifik. */
 }
 
 body {
   font-family: "Poppins", sans-serif;
   color: #ffffff;
-  min-height: 100vh; /* Memastikan body minimal setinggi viewport */
-  background-color: #050505; /* Menghindari sisa hitam/putih jika ada celah */
+  min-height: 100vh;
+  background-color: #050505;
 }
 
 .parallax__container {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background-color: #000000; /* Warna latar belakang jika gambar tidak memuat */
+  background-color: #000000;
 }
 
 .parallax__container::after {
@@ -33,69 +32,56 @@ body {
   height: 5rem;
   width: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-  z-index: 60; /* Pastikan overlay gradien di atas elemen lain jika perlu */
+  z-index: 60;
 }
 
 .parallax__container img {
   position: absolute;
-  top: 0; /* Pastikan gambar dimulai dari paling atas container */
-  left: 0; /* Pastikan gambar dimulai dari paling kiri container */
-  width: 100%; /* Isi lebar penuh container */
-  height: 100%; /* Isi tinggi penuh container */
-  object-fit: cover; /* Penting: Skala gambar untuk mengisi container, pangkas jika perlu */
-  object-position: center; /* Fokus di tengah gambar saat dipangkas */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* ============================================== */
-/* MODIFIKASI CSS UNTUK TEKS "ARGO MUNUNG" */
-/* ============================================== */
 .parallax__container h1.title-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Memusatkan seluruh wrapper di tengah layar */
+  transform: translate(-50%, -50%);
   font-weight: 900;
-  white-space: nowrap; /* Pastikan teks tetap dalam satu baris */
-  z-index: 50; /* Pastikan teks di atas gambar latar belakang */
+  white-space: nowrap;
+  z-index: 50;
   opacity: 0;
-  animation: fadeInOut 5s infinite; /* Durasi 3s untuk satu siklus penuh, berulang terus */
-  animation-delay: 0.5s;
+  animation: fadeInThenOut 5s infinite; /* Siklus 1.5 detik berulang */
+  animation-delay: 0.5s; /* Penundaan awal sebelum siklus pertama dimulai */
 }
 
-@keyframes fadeInOut {
+@keyframes fadeInThenOut {
   0% {
-    opacity: 0; /* Mulai dari tidak terlihat */
+    opacity: 0;
   }
-  33% { /* Teks muncul di sepertiga awal durasi */
-    opacity: 1; /* Terlihat penuh */
+  20% {
+    opacity: 1;
   }
-  66% { /* Teks tetap terlihat hingga dua pertiga durasi */
-    opacity: 1; /* Tetap terlihat penuh */
+  80% {
+    opacity: 1;
   }
   100% {
-    opacity: 0; /* Kembali tidak terlihat di akhir durasi */
+    opacity: 0;
   }
 }
 
-
 .parallax__container h1.title-wrapper span {
-  display: inline-block; /* Agar bisa diatur transform-nya di JS */
-  font-size: 100px; /* Ukuran font awal yang sama untuk kedua kata */
+  display: inline-block;
+  font-size: 100px;
   text-shadow:
     1px 1px 0px #0a0a0a,
     2px 2px 0px #0a0a0a,
-    3px 3px 0px #0a0a0a,
-    4px 4px 0px #0a0a0a,
-    5px 5px 0px #0a0a0a,
-    6px 6px 0px #0a0a0a,
-    7px 7px 0px #0a0a0a,
-    8px 8px 0px #0a0a0a,
-    9px 9px 0px #0a0a0a,
-    10px 10px 0px #0a0a0a;
+    3px 3px 0px #0a0a0a; /* Mengurangi jumlah lapisan shadow */
 }
 
-/* Hapus transform: translateY() dari #titleArgo dan #titleMunung di CSS
-   Karena posisi awal akan diatur oleh wrapper dan manipulasi di JS */
 #titleArgo {
   /* transform: translateY(-50px); */
 }
@@ -104,26 +90,21 @@ body {
   /* transform: translateY(50px); */
 }
 
-/* Untuk gambar batu (bg-2) agar lebih ke bawah seperti permintaan sebelumnya */
 #bg-2 {
-  margin-top: 50px; /* Contoh: Geser 50px ke bawah. Sesuaikan nilai ini. */
-  z-index: 40; /* Pastikan batu di bawah teks tapi di atas bg-1 */
+  margin-top: 50px;
+  z-index: 40;
 }
 
 #bg-3 {
-  z-index: 45; /* Contoh: Posisikan bg-3 di antara batu dan teks, atau sesuaikan sesuai keinginan Anda */
+  z-index: 45;
 }
 
-
-/* ============================================== */
-/* CSS Lainnya (Tidak Berubah) */
-/* ============================================== */
 .about {
   min-height: 125vh;
   background-color: #050505;
   display: grid;
   place-content: center;
-  padding: 2rem 0; /* Tambahkan padding vertikal agar konten tidak menempel ke tepi */
+  padding: 2rem 0;
 }
 
 .image__gallary {
@@ -132,41 +113,39 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
-  padding: 0 1rem; /* Padding horizontal untuk layar lebar */
-  align-items: stretch; /* Memastikan item grid meregang secara vertikal */
+  padding: 0 1rem;
+  align-items: stretch;
 }
 
 .image__card {
   opacity: 0;
   transition: opacity 0.5s ease-out;
-  aspect-ratio: 2 / 3; /* Penting: Definisi rasio aspek untuk setiap kartu gambar (potret) */
-                       /* Anda mungkin perlu menyesuaikan nilai ini (misal 3 / 4 atau 9 / 16)
-                          tergantung rasio aspek mayoritas gambar Anda. */
-  overflow: hidden; /* Penting untuk memotong bagian gambar yang berlebih dari object-fit: cover */
-  display: flex; /* Untuk memusatkan gambar di dalam kartu */
-  justify-content: center; /* Untuk memusatkan gambar secara horizontal */
-  align-items: center; /* Untuk memusatkan gambar secara vertikal */
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image__card img {
   border-radius: 1rem;
-  width: 100%; /* Mengisi lebar kartu */
-  height: 100%; /* Mengisi tinggi kartu (yang diatur oleh aspect-ratio) */
-  object-fit: cover; /* Penting: Memastikan gambar mengisi seluruh area kartu */
-  object-position: center; /* Fokus di tengah gambar saat dipangkas */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .background-logo-container {
   max-width: 800px;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 2rem; /* Bisa disesuaikan jika ingin geser ke atas/bawah */
   position: relative;
   z-index: 1;
 
   background-image: url('assets/logoAM.png');
   background-repeat: no-repeat;
-  background-position: center ;
-  background-size: 60%;
+  background-position: center; /* Sesuaikan posisi vertikal logo */
+  background-size: 60%; /* Sesuaikan ukuran logo */
 
   background-color: #050505;
   padding: 30px;
@@ -186,21 +165,22 @@ body {
   z-index: -1;
 }
 
-.details {
-  max-width: 1200px;
-  /* margin: auto; */
-  /* margin-top: 1rem; */
+.details-text-wrapper { /* Ini adalah selector untuk teks di dalam background-logo-container */
+  max-width: 100%; /* Agar teks mengisi lebar container */
+  
   font-size: 1.2rem;
-  line-height: 1.5rem;
-  text-align: justify;
+  line-height: 1.5rem; /* Disesuaikan untuk spasi yang lebih rapat */
+  text-align: justify; /* Teks rata kiri-kanan */
   padding: 0 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Bayangan teks agar lebih terbaca */
 }
+
 
 .footer__btn {
   max-width: 800px;
   margin: 2rem auto;
   text-align: center;
-  padding: 0 1rem; /* Tambahkan padding untuk tombol */
+  padding: 0 1rem;
 }
 
 .learn__more {
@@ -217,31 +197,23 @@ body {
 /* MEDIA QUERIES UNTUK RESPONSIF */
 /* ============================================== */
 
-/* Untuk layar dengan lebar maksimum 1024px (Tablet & Laptop Kecil) */
 @media (max-width: 1024px) {
   .parallax__container h1.title-wrapper span {
     font-size: 80px;
     text-shadow:
-    1px 1px 0px #0a0a0a,
-    2px 2px 0px #0a0a0a,
-    3px 3px 0px #0a0a0a,
-    4px 4px 0px #0a0a0a,
-    5px 5px 0px #0a0a0a,
-    6px 6px 0px #0a0a0a,
-    7px 7px 0px #0a0a0a,
-    8px 8px 0px #0a0a0a,
-    9px 9px 0px #0a0a0a,
-    10px 10px 0px #0a0a0a;
+      1px 1px 0px #0a0a0a,
+      2px 2px 0px #0a0a0a,
+      3px 3px 0px #0a0a0a;
   }
 
   .image__gallary {
     gap: 2rem;
     padding: 0 1rem;
-    align-items: stretch; /* Pastikan ini ada */
+    align-items: stretch;
   }
 
   .image__card {
-    aspect-ratio: 2 / 3; /* Pertahankan rasio aspek konsisten */
+    aspect-ratio: 2 / 3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,39 +225,31 @@ body {
     object-position: center;
   }
 
-  .details {
+  .details-text-wrapper { /* Diperbarui untuk menargetkan wrapper teks */
     padding: 0 1.5rem;
   }
 }
 
-/* Untuk layar dengan lebar maksimum 768px (Tablet Portrait & Ponsel Besar) */
 @media (max-width: 768px) {
   .parallax__container {
-    height: 70vh; /* Sesuaikan tinggi parallax untuk perangkat yang lebih kecil */
+    height: 70vh;
   }
   .parallax__container h1.title-wrapper span {
-    font-size: 60px;
+    font-size: 50px;
     text-shadow:
-    1px 1px 0px #0a0a0a,
-    2px 2px 0px #0a0a0a,
-    3px 3px 0px #0a0a0a,
-    4px 4px 0px #0a0a0a,
-    5px 5px 0px #0a0a0a,
-    6px 6px 0px #0a0a0a,
-    7px 7px 0px #0a0a0a,
-    8px 8px 0px #0a0a0a,
-    9px 9px 0px #0a0a0a,
-    10px 10px 0px #0a0a0a;
+      1px 1px 0px #0a0a0a,
+      2px 2px 0px #0a0a0a,
+      3px 3px 0px #0a0a0a;
   }
 
   .image__gallary {
-    grid-template-columns: repeat(2, 1fr); /* Ubah menjadi 2 kolom */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     padding: 0 1.5rem;
-    align-items: stretch; /* Pastikan ini ada */
+    align-items: stretch;
   }
   .image__card {
-    aspect-ratio: 2 / 3; /* Pertahankan rasio aspek konsisten */
+    aspect-ratio: 2 / 3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -297,41 +261,33 @@ body {
     object-position: center;
   }
 
-  .details {
+  .details-text-wrapper { /* Diperbarui untuk menargetkan wrapper teks */
     font-size: 1rem;
     line-height: 1.75rem;
     padding: 0 1.5rem;
   }
 }
 
-/* Untuk layar dengan lebar maksimum 480px (Ponsel Kecil) */
 @media (max-width: 480px) {
   .parallax__container {
-    height: 60vh; /* Sesuaikan tinggi parallax lebih lanjut untuk ponsel */
+    height: 60vh;
   }
   .parallax__container h1.title-wrapper span {
-    font-size: 30px;
+    font-size: 25px;
     text-shadow:
-    1px 1px 0px #0a0a0a,
-    2px 2px 0px #0a0a0a,
-    3px 3px 0px #0a0a0a,
-    4px 4px 0px #0a0a0a,
-    5px 5px 0px #0a0a0a,
-    6px 6px 0px #0a0a0a,
-    7px 7px 0px #0a0a0a,
-    8px 8px 0px #0a0a0a,
-    9px 9px 0px #0a0a0a,
-    10px 10px 0px #0a0a0a;
+      1px 1px 0px #0a0a0a,
+      2px 2px 0px #0a0a0a,
+      3px 3px 0px #0a0a0a;
   }
 
   .image__gallary {
-    grid-template-columns: 1fr; /* Ubah menjadi 1 kolom */
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 0 1rem;
-    align-items: stretch; /* Pastikan ini ada */
+    align-items: stretch;
   }
   .image__card {
-    aspect-ratio: 2 / 3; /* Pertahankan rasio aspek konsisten */
+    aspect-ratio: 2 / 3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -343,7 +299,7 @@ body {
     object-position: center;
   }
 
-  .details {
+  .details-text-wrapper { /* Diperbarui untuk menargetkan wrapper teks */
     font-size: 0.9rem;
     line-height: 1.5rem;
     padding: 0 1rem;
