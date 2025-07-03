@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wisata Argo Munung</title>
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="parallax__container">
+    <img src="assets/bg-1argomunung.jpg" alt="parallax" />
+    <!-- <img id="bg-2" src="" alt="parallax" /> -->
+    <h1 class="title-wrapper">
+      <span id="titleArgo">Playground</span>
+      <span id="titleMunung">Argo Munung</span>
+    </h1>
+    <!-- <img id="bg-3" src="" alt="parallax" /> -->
+  </div>
+  <section class="about">
+    <div class="image__gallary">
+      <div class="image__card" id="image__card-1">
+        <img src="assets/grid-1playgroundperosotan.jpg" alt="grid" />
+      </div>
+      <div class="image__card" id="image__card-2">
+        <img src="assets/grid-2gazebodepan.jpg" alt="grid" />
+      </div>
+      <div class="image__card" id="image__card-3">
+        <img src="assets/grid-3perosotankuning.jpg" alt="grid" />
+      </div>
+      <div class="image__card" id="image__card-4">
+        <img src="assets/grid-4gazebo.jpg" alt="grid" />
+      </div>
+    </div>
+    <div class="background-logo-container">
+      <div class="details">
+        Area playground ini hadir seiring dengan transformasi besar kawasan Argo Munung dari bekas tambang menjadi taman
+        agrowisata yang hijau, asri, dan ramah keluarga, dan sebagai bagian dari penataan lahan yang berkelanjutan,
+        playground ini juga dibangun khusus untuk memberikan ruang bermain yang aman dan menyenangkan bagi anak-anak,
+        serta memiliki beragam wahana bermain tersedia, seperti Perosotan seru, Ayunan santai, Jungkat-jungkit klasik
+        dengan latar pepohonan dan udara segar pegunungan, playground ini menjadi tempat favorit keluarga untuk
+        bersantai sambil membiarkan anak-anak bebas bermain di alam terbuka.
+      </div>
+    </div>
+    <!-- <div class="footer__btn">
+        <button class="learn__more">Learn More</button>
+      </div> -->
+  </section>
+
+  <script>
+    var titleArgo = document.getElementById("titleArgo");
+    var titleMunung = document.getElementById("titleMunung");
+
+    // var bg_2 = document.getElementById("bg-2");
+    // var bg_3 = document.getElementById("bg-3");
+
+    var image_card_1 = document.getElementById("image__card-1");
+    var image_card_2 = document.getElementById("image__card-2");
+    var image_card_3 = document.getElementById("image__card-3");
+    var image_card_4 = document.getElementById("image__card-4");
+
+    // ==========================================================
+    // PENTING: DEFINISIKAN PARAMETER PARALLAX
+    // ==========================================================
+
+    // --- Scroll Range (Kapan efek ini mulai dan berakhir) ---
+    const scrollStart = 0; // Efek dimulai dari awal scroll
+    const scrollEnd = 300; // Efek berakhir saat scroll mencapai 300px (sesuaikan!)
+
+    // --- Posisi Awal (0% scroll) ---
+    // Ini adalah offset awal relatif terhadap posisi awal h1.title-wrapper
+    // Karena awalnya menyatu, nilai-nilai ini bisa 0.
+    const argoInitialX = 0;
+    const argoInitialY = 0;
+
+    const munungInitialX = 0;
+    const munungInitialY = 0;
+
+    // --- Posisi Akhir (100% scroll dalam range `scrollStart` - `scrollEnd`) ---
+    // Ini adalah posisi relatif di mana Argo berada di tengah atas Munung setelah transisi
+    // Perhatikan bahwa nilai ini mungkin perlu disesuaikan sedikit saat font-size berubah di mobile
+    const argoTargetYOffset = -120; // Argo bergerak 120px ke atas dari posisi awal (sesuaikan!)
+    const munungTargetYOffset = 50; // Munung bergerak 50px ke bawah dari posisi awal (sesuaikan!)
+
+    const commonTextSpeed = 0.5; // Kecepatan umum pergerakan teks (saat mereka menyatu turun)
+
+    document.addEventListener("scroll", (event) => {
+      var positionY = window.scrollY; // Posisi scroll vertikal saat ini
+
+      // Hitung progress scroll dalam range yang ditentukan (0.0 - 1.0)
+      let scrollProgress = 0;
+      if (positionY > scrollStart) {
+        scrollProgress = Math.min(1, (positionY - scrollStart) / (scrollEnd - scrollStart));
+      }
+
+      // Dapatkan lebar Munung dan Argo secara dinamis
+      // Penting untuk mendapatkan lebar setiap kali karena font size mungkin berubah oleh media queries
+      const munungWidth = titleMunung.offsetWidth;
+      const argoWidth = titleArgo.offsetWidth;
+
+      // Hitung offset horizontal agar "Argo" berada di tengah "Munung" pada posisi target
+      // Ini adalah offset relatif dari pusat 'Munung' ke pusat 'Argo'
+      const targetArgoXOffsetFromMunungCenter = (munungWidth / 2) - (argoWidth / 2);
+
+      // ==========================================================
+      // LOGIKA UNTUK TEKS "ARGO MUNUNG"
+      // ==========================================================
+
+      // Perhitungan posisi "Munung"
+      // Munung akan bergerak dari posisi awal (initial) ke `munungTargetYOffset`
+      // dan juga bergerak ke bawah bersamaan dengan scroll (dengan `commonTextSpeed`)
+      const currentMunungY = munungInitialY + (munungTargetYOffset * scrollProgress) + (positionY * commonTextSpeed);
+      titleMunung.style.transform = `translateY(${currentMunungY}px)`;
+
+      // Perhitungan posisi "Argo"
+      // Argo akan bergerak dari posisi awal (initial) ke `argoTargetYOffset`
+      // dan juga bergerak ke bawah bersamaan dengan scroll (dengan `commonTextSpeed`)
+      // Serta bergerak horizontal untuk menyeimbangkan di atas Munung
+      const currentArgoX = argoInitialX + (targetArgoXOffsetFromMunungCenter * scrollProgress); // Interpolasi posisi X
+      const currentArgoY = argoInitialY + (argoTargetYOffset * scrollProgress) + (positionY * commonTextSpeed);
+
+      titleArgo.style.transform = `translate(${currentArgoX}px, ${currentArgoY}px)`;
+
+
+      // ==========================================================
+      // LOGIKA UNTUK GAMBAR LATAR BELAKANG DAN KARTU GAMBAR (TIDAK BERUBAH)
+      // ==========================================================
+
+      // bg_2.style.top = `-${positionY * 0.5}px`;
+      // bg_3.style.top = `-${positionY}px`;
+      // bg_3.style.scale = 1 + positionY * 0.001;
+
+      // image_card_1.style.transform = `translateY(${positionY * -0.5 + 400}px)`;
+      // image_card_2.style.transform = `translateY(${positionY * 0.1 + -50}px)`;
+      // image_card_3.style.transform = `translateY(${positionY * -0.1 + 100}px)`;
+      // image_card_4.style.transform = `translateY(${positionY * 0.2 + -125}px)`;
+
+      var _newOpacity = positionY * 0.005;
+      if (_newOpacity >= 0 && _newOpacity <= 1) {
+        image_card_1.style.opacity = _newOpacity;
+        image_card_2.style.opacity = _newOpacity;
+        image_card_3.style.opacity = _newOpacity;
+        image_card_4.style.opacity = _newOpacity;
+      }
+    });
+  </script>
+</body>
+
+</html>
