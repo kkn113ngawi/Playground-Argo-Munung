@@ -75,7 +75,7 @@ body {
 
 .parallax__container h1.title-wrapper span {
   display: inline-block;
-  font-size: 100px;
+  font-size: 75px;
   text-shadow:
     1px 1px 0px #0a0a0a,
     2px 2px 0px #0a0a0a,
@@ -170,7 +170,7 @@ body {
   
   font-size: 1.2rem;
   line-height: 1.5rem; /* Disesuaikan untuk spasi yang lebih rapat */
-  text-align: justify; /* Teks rata kiri-kanan */
+  text-align: center; /* Teks rata kiri-kanan */
   padding: 0 2rem;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Bayangan teks agar lebih terbaca */
 }
@@ -199,7 +199,7 @@ body {
 
 @media (max-width: 1024px) {
   .parallax__container h1.title-wrapper span {
-    font-size: 80px;
+    font-size: 60px;
     text-shadow:
       1px 1px 0px #0a0a0a,
       2px 2px 0px #0a0a0a,
@@ -235,7 +235,7 @@ body {
     height: 70vh;
   }
   .parallax__container h1.title-wrapper span {
-    font-size: 50px;
+    font-size: 39px;
     text-shadow:
       1px 1px 0px #0a0a0a,
       2px 2px 0px #0a0a0a,
