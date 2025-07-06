@@ -165,7 +165,7 @@ body {
   z-index: -1;
 }
 
-.details-text-wrapper { /* Ini adalah selector untuk teks di dalam background-logo-container */
+.details { /* Ini adalah selector untuk teks di dalam background-logo-container */
   max-width: 100%; /* Agar teks mengisi lebar container */
   
   font-size: 1.2rem;
