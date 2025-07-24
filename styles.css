@@ -35,6 +35,66 @@ body {
   z-index: 60;
 }
 
+.social-media-container {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #787676;
+  color: #ffffff;
+}
+
+.social-media-container p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Kontainer utama untuk mengatur kelompok sosial media (Instagram di atas TikTok) */
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;                 /* SESUAIKAN: Kurangi jarak vertikal antara grup Instagram dan TikTok */
+}
+
+/* Setiap tautan sosial media (grup ikon + username) */
+.social-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;                 /* SESUAIKAN: Jarak horizontal antara ikon dan username */
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: lighter;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+  color: #000000;
+}
+
+/* Pengaturan untuk gambar ikon (Instagram, TikTok) */
+.social-icon {
+  width: 35px;               /* SESUAIKAN: Ukuran ikon menjadi lebih kecil */
+  height: 35px;              /* SESUAIKAN: Ukuran ikon menjadi lebih kecil */
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Pengaturan untuk teks username */
+.social-username {
+  font-size: 1em;            /* SESUAIKAN: Ukuran font username sedikit lebih kecil */
+  white-space: nowrap;
+}
+
+.social-media-container{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
 .parallax__container img {
   position: absolute;
   top: 0;
